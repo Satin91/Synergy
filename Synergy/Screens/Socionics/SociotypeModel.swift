@@ -1,5 +1,5 @@
 //
-//  Colors.swift
+//  SociotypeModel.swift
 //  Synergy
 //
 //  Created by Артур Кулик on 22.10.2023.
