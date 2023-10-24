@@ -50,7 +50,7 @@ struct SociotypeDetailView: View {
     var body: some View {
         content
             .toolbar(.hidden)
-            .background(Color.white)
+            .background(Theme.Socionics.Colors.background)
     }
     
     var content: some View {
@@ -66,8 +66,10 @@ struct SociotypeDetailView: View {
         }
     }
     
+    @ViewBuilder
     func makeListView(viewStore: storeAlias) -> some View {
         VStack(spacing: 12) {
+            Group {
             SocionicsDescriptionRow(title: "Общее описание", subtitle: "Коротко о типе", description: {
                 VStack {
                     if !viewStore.state.generalDescriptionHidden {
@@ -90,6 +92,10 @@ struct SociotypeDetailView: View {
                 }
             }
             )
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(12)
             .onTapGesture {
                 viewStore.send(.changeModelAVisibility)
             }
@@ -175,8 +181,6 @@ struct SociotypeDetailView: View {
                     .font(Theme.Socionics.Fonts.PTRootUI.medium(size: 10))
                     .foregroundStyle(Theme.Socionics.Colors.mainText)
                 description()
-                    .padding(.top, 6)
-                Divider()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
