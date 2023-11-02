@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "mads_mikkelsen.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
