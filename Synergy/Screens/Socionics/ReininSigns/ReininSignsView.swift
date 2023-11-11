@@ -11,8 +11,8 @@ import SwiftUI
 struct ReininSignsDomain: Reducer {
     
     struct State: Equatable {
-        var sociotype: Sociotype
-        var sociotypes = Sociotype.allCases
+        var sociotype: SociotypeFactory
+        var sociotypes = SociotypeFactory.allCases
         var position: Int = 0
     }
     

@@ -18,7 +18,6 @@ struct SociotypeModel: Equatable {
     var raininSigns: [Rainin]
     
     var description: SociotypeDescriptionModel
-    
 }
 
 struct SociotypeDescriptionModel: Equatable {
@@ -31,6 +30,7 @@ struct SociotypeDescriptionModel: Equatable {
     
     let general: String
     var modelA: [SociotypeFunctionModel]
+    var popularPersons: [Image]
 }
 
 struct RainingSignPair {
@@ -278,35 +278,35 @@ enum SocionicsFunction {
         var image: some View {
             switch self {
             case .whiteLogic:
-                return Theme.Socionics.Images.logic
+                return Theme.Socionics.Icons.logic
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .whiteIntuition:
-                return Theme.Socionics.Images.intuition
+                return Theme.Socionics.Icons.intuition
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .whiteEthics:
-                return Theme.Socionics.Images.ethics
+                return Theme.Socionics.Icons.ethics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .whiteSensorics:
-                return Theme.Socionics.Images.sensorics
+                return Theme.Socionics.Icons.sensorics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .blackLogic:
-                return Theme.Socionics.Images.logic
+                return Theme.Socionics.Icons.logic
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             case .blackIntuition:
-                return Theme.Socionics.Images.intuition
+                return Theme.Socionics.Icons.intuition
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             case .blackEthics:
-                return Theme.Socionics.Images.ethics
+                return Theme.Socionics.Icons.ethics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             case .blackSensorics:
-                return Theme.Socionics.Images.sensorics
+                return Theme.Socionics.Icons.sensorics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             }

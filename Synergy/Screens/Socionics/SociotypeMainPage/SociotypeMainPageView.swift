@@ -1,5 +1,5 @@
 //
-//  SocionicsView.swift
+//  SociotypeMainPageDomain.swift
 //  Synergy
 //
 //  Created by Артур Кулик on 18.10.2023.
@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct SocionicsDomain: Reducer {
+struct SociotypeMainPageDomain: Reducer {
     struct State: Equatable {
         var sociotype: Sociotype
         var position: Int = 0
@@ -47,9 +47,9 @@ struct SocionicsDomain: Reducer {
 }
 
 
-struct SocionicsView: View {
-    typealias ViewStoreAlias = ViewStore<SocionicsDomain.State, SocionicsDomain.Action>
-    let store: StoreOf<SocionicsDomain>
+struct SociotypeMainPageView: View {
+    typealias ViewStoreAlias = ViewStore<SociotypeMainPageDomain.State, SociotypeMainPageDomain.Action>
+    let store: StoreOf<SociotypeMainPageDomain>
     
     var body: some View {
         content
@@ -116,15 +116,15 @@ struct SocionicsView: View {
             NavigationLink(state: MainDomain.Path.State.reininSigns(ReininSignsDomain.State(sociotype: viewStore.sociotype))) {
                 SocionicsButton(
                     size: .large(title: "Интертипные отношения", subtitle: "Отношения ЛИИ с другими типами"),
-                    border: Theme.Socionics.Colors.buttonBorder,
-                    image: Theme.Socionics.Images.userGroup
+                    image: Theme.Socionics.Icons.intertype,
+                    imageColor: Theme.Socionics.Colors.mainText
                 )
             }
             NavigationLink(state: MainDomain.Path.State.reininSigns(ReininSignsDomain.State(sociotype: viewStore.sociotype))) {
                 SocionicsButton(
                     size: .large(title: "Признаки рейнина", subtitle: "Дополнительное описание"),
-                    border: Theme.Socionics.Colors.buttonBorder,
-                    image: Theme.Socionics.Images.userGroup
+                    image: Theme.Socionics.Icons.reinin,
+                    imageColor: Theme.Socionics.Colors.mainText
                 )
             }
         }
@@ -173,35 +173,35 @@ struct SocionicsView: View {
         private var content: some View {
             switch function {
             case .whiteLogic:
-                return Theme.Socionics.Images.logic
+                return Theme.Socionics.Icons.logic
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .whiteIntuition:
-                return Theme.Socionics.Images.intuition
+                return Theme.Socionics.Icons.intuition
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .whiteEthics:
-                return Theme.Socionics.Images.ethics
+                return Theme.Socionics.Icons.ethics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .whiteSensorics:
-                return Theme.Socionics.Images.sensorics
+                return Theme.Socionics.Icons.sensorics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
             case .blackLogic:
-                return Theme.Socionics.Images.logic
+                return Theme.Socionics.Icons.logic
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             case .blackIntuition:
-                return Theme.Socionics.Images.intuition
+                return Theme.Socionics.Icons.intuition
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             case .blackEthics:
-                return Theme.Socionics.Images.ethics
+                return Theme.Socionics.Icons.ethics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             case .blackSensorics:
-                return Theme.Socionics.Images.sensorics
+                return Theme.Socionics.Icons.sensorics
                     .resizable()
                     .foregroundStyle(Theme.Socionics.Colors.blackFunction)
             }
@@ -210,8 +210,8 @@ struct SocionicsView: View {
 }
 
 #Preview {
-    SocionicsView(store: Store(initialState: SocionicsDomain.State(sociotype: .hugo)) {
-        SocionicsDomain()
+    SociotypeMainPageView(store: Store(initialState: SociotypeMainPageDomain.State(sociotype: .hugo)) {
+        SociotypeMainPageDomain()
     }
     )
 }
