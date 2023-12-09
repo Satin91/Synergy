@@ -16,12 +16,14 @@ enum Theme {
             static let buttonBorder = Color("S_buttonStroke")
             static let buttonSecondaryText = Color("S_buttonSecondaryText")
             static let green = Color("S_green")
+            static let red = Color("S_red")
             static let greenLight = Color("S_greenLight")
             static let mainText = Color("S_mainText")
             static let mint = Color("S_mint")
             static let secondaryText = Color("S_secondaryText")
             static let violet = Color("S_violet")
             static let clear = Color.clear
+            static let blue = Color("S_blue")
             static let blackFunction = Color("S_blackFunction")
             static let whiteFunction = Color("S_whiteFunction")
         }
@@ -46,12 +48,26 @@ enum Theme {
             }
         }
         
-        enum Images {
-            static let userGroup = Image("userGroup")
+        enum Icons {
+            static let intertype = Image("intertype")
+            static let reinin = Image("reinin")
             static let logic = Image("logic")
             static let intuition = Image("intuition")
             static let ethics = Image("ethics")
             static let sensorics = Image("sensorics")
+        }
+        
+        enum Photos {
+            enum Robespierres {
+                static let irina_khakamada = Image("irina_khakamada")
+                static let immanuel_kant = Image("immanuel_kant")
+                static let mads_mikkelsen = Image("mads_mikkelsen")
+                static let maria_curie = Image("maria_curie")
+                static let nikola_tesla = Image("nikola_tesla")
+                static let vladimir_putin = Image("vladimir_putin")
+                static let robert_oppenheimer = Image("robert_oppenheimer")
+                static let ludvig_van_bethoven = Image("ludvig_van_bethoven")
+            }
         }
     }
     

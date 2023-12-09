@@ -5,12 +5,13 @@
 //  Created by Артур Кулик on 11.11.2023.
 //
 
+import ComposableArchitecture
 import Foundation
 
 struct SociotypeDetailDomain: Reducer {
     
     struct State: Equatable {
-        var sociotype: Sociotype
+        var sociotype: SociotypeModel
     }
     
     enum Action: Equatable  {

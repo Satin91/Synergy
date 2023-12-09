@@ -11,10 +11,10 @@ import SwiftUI
 struct MainDomain: Reducer {
     struct State: Equatable {
         var path = StackState<Path.State>()
-        @PresentationState var socionics: SocionicsDomain.State?
+        @PresentationState var socionics: SociotypeDomain.State?
         @PresentationState var astrology: AstrologyDomain.State?
         @PresentationState var reininSigns: ReininSignsDomain.State?
-        @PresentationState var socionicsDetailView: SociotypeDetaiDomain.State?
+        @PresentationState var socionicsDetailView: SociotypeDetailDomain.State?
     }
     
     enum Action: Equatable {
@@ -23,22 +23,22 @@ struct MainDomain: Reducer {
     
     struct Path: Reducer {
         enum State: Equatable {
-            case socionics(SocionicsDomain.State)
+            case socionics(SociotypeDomain.State)
             case astrology(AstrologyDomain.State)
             case reininSigns(ReininSignsDomain.State)
-            case sociotypeDetail(SociotypeDetaiDomain.State)
+            case sociotypeDetail(SociotypeDetailDomain.State)
         }
         
         enum Action: Equatable {
-            case socionics(SocionicsDomain.Action)
+            case socionics(SociotypeDomain.Action)
             case astrology(AstrologyDomain.Action)
             case reininSigns(ReininSignsDomain.Action)
-            case sociotypeDetail(SociotypeDetaiDomain.Action)
+            case sociotypeDetail(SociotypeDetailDomain.Action)
         }
         
         var body: some ReducerOf<Self> {
             Scope(state: /State.socionics, action: /Action.socionics) {
-                SocionicsDomain()
+                SociotypeDomain()
             }
             Scope(state: /State.astrology, action: /Action.astrology) {
                 AstrologyDomain()
@@ -47,7 +47,7 @@ struct MainDomain: Reducer {
                 ReininSignsDomain()
             }
             Scope(state: /State.sociotypeDetail, action: /Action.sociotypeDetail) {
-                SociotypeDetaiDomain()
+                SociotypeDetailDomain()
             }
         }
     }
@@ -90,7 +90,7 @@ struct MainView: View {
                 CaseLet(
                     /MainDomain.Path.State.socionics,
                      action: MainDomain.Path.Action.socionics,
-                     then: SocionicsView.init(store:)
+                     then: SociotypeView.init(store:)
                 )
             case .astrology:
                 CaseLet(
@@ -120,7 +120,7 @@ struct MainView: View {
                 navigationBar
                 Spacer()
                 HStack {
-                    NavigationLink(state: MainDomain.Path.State.socionics(SocionicsDomain.State(sociotype: .hugo))) {
+                    NavigationLink(state: MainDomain.Path.State.socionics(SociotypeDomain.State(sociotype: SociotypeFactory.robespierre.type))) {
                         SphereButton(title: "Socionics")
                     }
                     NavigationLink(state: MainDomain.Path.State.astrology(AstrologyDomain.State())) {

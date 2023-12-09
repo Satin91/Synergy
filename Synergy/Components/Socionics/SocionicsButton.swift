@@ -16,7 +16,7 @@ struct SocionicsButton: View {
         var radius: CGFloat {
             switch self {
             case .large:
-                return 12
+                return 16
             case .middle:
                 return 8
             case .small:
@@ -27,7 +27,7 @@ struct SocionicsButton: View {
         var heigh: CGFloat {
             switch self {
             case .large:
-                return 60
+                return 80
             case .middle:
                 return 34
             case .small:
@@ -58,14 +58,16 @@ struct SocionicsButton: View {
     
     let size: Size
     var borderColor: Color?
+    var imageColor: Color?
     var image: Image?
     
     @State private var textOpacity: CGFloat = 1.0
     
-    init(size: Size, border: Color? = nil, image: Image? = nil) {
+    init(size: Size, border: Color? = nil, image: Image? = nil, imageColor: Color? = nil) {
         self.size = size
         self.borderColor = border
         self.image = image
+        self.imageColor = imageColor
     }
     
     var body: some View {
@@ -85,11 +87,14 @@ struct SocionicsButton: View {
     
     private func largeButton(title: String, subtitle: String? = nil) -> some View {
         background(color: Theme.Socionics.Colors.buttonBackground, height: size.heigh)
+            .shadow(color: .black.opacity(0.09), radius: 22)
             .overlay {
-                HStack(spacing: 16) {
+                HStack(alignment: .center, spacing: 16) {
                     self.image!
                         .renderingMode(.template)
-                        .foregroundStyle(Theme.Socionics.Colors.mainText)
+                        .resizable()
+                        .frame(width: 42, height: 42)
+                        .foregroundStyle(imageColor ?? Theme.Socionics.Colors.secondaryText)
                     VStack(alignment: .leading, spacing: 2) {
                         titleText(text: title, size: size.titleSize)
                         subtitleText(text: subtitle)
@@ -146,5 +151,5 @@ struct SocionicsButton: View {
 }
 
 #Preview {
-    SocionicsButton(size: .large(title: "Нажмите, чтобы что то получилось", subtitle: "Эй, почему текст такой маленький ?"), image: Theme.Socionics.Images.userGroup)
+    SocionicsButton(size: .large(title: "Нажмите, чтобы что то получилось", subtitle: "Эй, почему текст такой маленький ?"), image: Theme.Socionics.Icons.intertype)
 }

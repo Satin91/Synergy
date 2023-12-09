@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E2564DC2B24C44000FA2C08 /* SociotypeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2564DB2B24C44000FA2C08 /* SociotypeDescription.swift */; };
+		8E2564DE2B24C44600FA2C08 /* Rainin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2564DD2B24C44600FA2C08 /* Rainin.swift */; };
+		8E44CA1A2B2387E40013876D /* RadialDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E44CA192B2387E40013876D /* RadialDiagram.swift */; };
+		8E64F24D2B00150A009ED513 /* SociotypeDetailDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64F24C2B00150A009ED513 /* SociotypeDetailDomain.swift */; };
+		8E64F2512B0015F2009ED513 /* ReininSignsDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64F2502B0015F2009ED513 /* ReininSignsDomain.swift */; };
 		8E66E8DE2AE6D6B400FDBE6F /* SociotypeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66E8DD2AE6D6B400FDBE6F /* SociotypeDetailView.swift */; };
+		8E7762A92B24C01000E1BFC2 /* ExpandableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7762A82B24C01000E1BFC2 /* ExpandableRow.swift */; };
+		8E7762AC2B24C35E00E1BFC2 /* SociotypeDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7762AA2B24C35E00E1BFC2 /* SociotypeDomain.swift */; };
+		8E7762AD2B24C35E00E1BFC2 /* SociotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7762AB2B24C35E00E1BFC2 /* SociotypeView.swift */; };
 		8E7B531A2AE597DF0031E807 /* SociotypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B53192AE597DF0031E807 /* SociotypeModel.swift */; };
 		8E7B531C2AE5C7280031E807 /* ReininSignsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B531B2AE5C7280031E807 /* ReininSignsView.swift */; };
-		8E7B531E2AE5E8D20031E807 /* Sociotype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B531D2AE5E8D20031E807 /* Sociotype.swift */; };
+		8E7B531E2AE5E8D20031E807 /* SociotypeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B531D2AE5E8D20031E807 /* SociotypeFactory.swift */; };
 		8E7B53202AE601750031E807 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B531F2AE601750031E807 /* Modifiers.swift */; };
 		8E94C0022AE4879D00E838C9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94C0012AE4879D00E838C9 /* Theme.swift */; };
 		8E94C0042AE4881300E838C9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E94C0032AE4881300E838C9 /* Colors.xcassets */; };
@@ -32,17 +40,25 @@
 		8E9962632AE0398B0097C3B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9962622AE0398B0097C3B6 /* Assets.xcassets */; };
 		8E9962662AE0398B0097C3B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9962652AE0398B0097C3B6 /* Preview Assets.xcassets */; };
 		8E99628A2AE03B870097C3B6 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 8E9962892AE03B870097C3B6 /* ComposableArchitecture */; };
-		8E99628F2AE049580097C3B6 /* SocionicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E99628E2AE049580097C3B6 /* SocionicsView.swift */; };
+		8ED6EF012AF4451F000B290A /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6EF002AF4451F000B290A /* SeparatorView.swift */; };
 		8EF9DA212AE13D100029DD68 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9DA202AE13D100029DD68 /* MainView.swift */; };
 		8EF9DA242AE13F650029DD68 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9DA232AE13F650029DD68 /* NavigationBar.swift */; };
 		8EF9DA262AE173DD0029DD68 /* AstrologyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9DA252AE173DD0029DD68 /* AstrologyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E2564DB2B24C44000FA2C08 /* SociotypeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeDescription.swift; sourceTree = "<group>"; };
+		8E2564DD2B24C44600FA2C08 /* Rainin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rainin.swift; sourceTree = "<group>"; };
+		8E44CA192B2387E40013876D /* RadialDiagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialDiagram.swift; sourceTree = "<group>"; };
+		8E64F24C2B00150A009ED513 /* SociotypeDetailDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeDetailDomain.swift; sourceTree = "<group>"; };
+		8E64F2502B0015F2009ED513 /* ReininSignsDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReininSignsDomain.swift; sourceTree = "<group>"; };
 		8E66E8DD2AE6D6B400FDBE6F /* SociotypeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeDetailView.swift; sourceTree = "<group>"; };
+		8E7762A82B24C01000E1BFC2 /* ExpandableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableRow.swift; sourceTree = "<group>"; };
+		8E7762AA2B24C35E00E1BFC2 /* SociotypeDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SociotypeDomain.swift; sourceTree = "<group>"; };
+		8E7762AB2B24C35E00E1BFC2 /* SociotypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SociotypeView.swift; sourceTree = "<group>"; };
 		8E7B53192AE597DF0031E807 /* SociotypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeModel.swift; sourceTree = "<group>"; };
 		8E7B531B2AE5C7280031E807 /* ReininSignsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReininSignsView.swift; sourceTree = "<group>"; };
-		8E7B531D2AE5E8D20031E807 /* Sociotype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sociotype.swift; sourceTree = "<group>"; };
+		8E7B531D2AE5E8D20031E807 /* SociotypeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeFactory.swift; sourceTree = "<group>"; };
 		8E7B531F2AE601750031E807 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		8E94C0012AE4879D00E838C9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		8E94C0032AE4881300E838C9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -65,7 +81,7 @@
 		8E99625E2AE039890097C3B6 /* SynergyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynergyApp.swift; sourceTree = "<group>"; };
 		8E9962622AE0398B0097C3B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E9962652AE0398B0097C3B6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8E99628E2AE049580097C3B6 /* SocionicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocionicsView.swift; sourceTree = "<group>"; };
+		8ED6EF002AF4451F000B290A /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		8EF9DA202AE13D100029DD68 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8EF9DA232AE13F650029DD68 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		8EF9DA252AE173DD0029DD68 /* AstrologyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstrologyView.swift; sourceTree = "<group>"; };
@@ -83,6 +99,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E64F2492B0014B7009ED513 /* Sociotype */ = {
+			isa = PBXGroup;
+			children = (
+				8E7762AA2B24C35E00E1BFC2 /* SociotypeDomain.swift */,
+				8E7762AB2B24C35E00E1BFC2 /* SociotypeView.swift */,
+			);
+			path = Sociotype;
+			sourceTree = "<group>";
+		};
+		8E64F24E2B001531009ED513 /* SociotypeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8E66E8DD2AE6D6B400FDBE6F /* SociotypeDetailView.swift */,
+				8E64F24C2B00150A009ED513 /* SociotypeDetailDomain.swift */,
+			);
+			path = SociotypeDetail;
+			sourceTree = "<group>";
+		};
+		8E64F24F2B0015DD009ED513 /* ReininSigns */ = {
+			isa = PBXGroup;
+			children = (
+				8E7B531B2AE5C7280031E807 /* ReininSignsView.swift */,
+				8E64F2502B0015F2009ED513 /* ReininSignsDomain.swift */,
+			);
+			path = ReininSigns;
+			sourceTree = "<group>";
+		};
+		8E64F2522B00164F009ED513 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E7B531D2AE5E8D20031E807 /* SociotypeFactory.swift */,
+				8E7B53192AE597DF0031E807 /* SociotypeModel.swift */,
+				8E2564DB2B24C44000FA2C08 /* SociotypeDescription.swift */,
+				8E2564DD2B24C44600FA2C08 /* Rainin.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8E94C0002AE4878F00E838C9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +152,8 @@
 			children = (
 				8E94C0062AE48ED600E838C9 /* SocionicsButton.swift */,
 				8E7B531F2AE601750031E807 /* Modifiers.swift */,
+				8ED6EF002AF4451F000B290A /* SeparatorView.swift */,
+				8E7762A82B24C01000E1BFC2 /* ExpandableRow.swift */,
 			);
 			path = Socionics;
 			sourceTree = "<group>";
@@ -197,11 +253,10 @@
 		8E9962902AE0495B0097C3B6 /* Socionics */ = {
 			isa = PBXGroup;
 			children = (
-				8E99628E2AE049580097C3B6 /* SocionicsView.swift */,
-				8E66E8DD2AE6D6B400FDBE6F /* SociotypeDetailView.swift */,
-				8E7B53192AE597DF0031E807 /* SociotypeModel.swift */,
-				8E7B531D2AE5E8D20031E807 /* Sociotype.swift */,
-				8E7B531B2AE5C7280031E807 /* ReininSignsView.swift */,
+				8E64F2492B0014B7009ED513 /* Sociotype */,
+				8E64F24E2B001531009ED513 /* SociotypeDetail */,
+				8E64F24F2B0015DD009ED513 /* ReininSigns */,
+				8E64F2522B00164F009ED513 /* Models */,
 			);
 			path = Socionics;
 			sourceTree = "<group>";
@@ -227,6 +282,7 @@
 			children = (
 				8E94C0052AE48E9F00E838C9 /* Socionics */,
 				8EF9DA232AE13F650029DD68 /* NavigationBar.swift */,
+				8E44CA192B2387E40013876D /* RadialDiagram.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -329,11 +385,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E64F24D2B00150A009ED513 /* SociotypeDetailDomain.swift in Sources */,
+				8ED6EF012AF4451F000B290A /* SeparatorView.swift in Sources */,
+				8E64F2512B0015F2009ED513 /* ReininSignsDomain.swift in Sources */,
+				8E2564DC2B24C44000FA2C08 /* SociotypeDescription.swift in Sources */,
+				8E2564DE2B24C44600FA2C08 /* Rainin.swift in Sources */,
+				8E7762A92B24C01000E1BFC2 /* ExpandableRow.swift in Sources */,
+				8E7762AD2B24C35E00E1BFC2 /* SociotypeView.swift in Sources */,
 				8E99625F2AE039890097C3B6 /* SynergyApp.swift in Sources */,
-				8E99628F2AE049580097C3B6 /* SocionicsView.swift in Sources */,
 				8EF9DA212AE13D100029DD68 /* MainView.swift in Sources */,
-				8E7B531E2AE5E8D20031E807 /* Sociotype.swift in Sources */,
+				8E7B531E2AE5E8D20031E807 /* SociotypeFactory.swift in Sources */,
+				8E7762AC2B24C35E00E1BFC2 /* SociotypeDomain.swift in Sources */,
 				8E7B53202AE601750031E807 /* Modifiers.swift in Sources */,
+				8E44CA1A2B2387E40013876D /* RadialDiagram.swift in Sources */,
 				8E94C0022AE4879D00E838C9 /* Theme.swift in Sources */,
 				8EF9DA242AE13F650029DD68 /* NavigationBar.swift in Sources */,
 				8E7B531C2AE5C7280031E807 /* ReininSignsView.swift in Sources */,

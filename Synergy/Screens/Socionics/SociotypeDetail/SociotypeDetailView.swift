@@ -28,7 +28,7 @@ struct SociotypeDetailView: View {
                     Spacer()
                     makeListView(viewStore: viewStore)
                         .padding()
-                    CollageView(photos: viewStore.state.sociotype.type.description.popularPersons)
+                    CollageView(photos: viewStore.state.sociotype.description.popularPersons)
                 }
                 .ignoresSafeArea()
             }
@@ -39,14 +39,18 @@ struct SociotypeDetailView: View {
     func makeListView(viewStore: storeAlias) -> some View {
         VStack(spacing: 12) {
             Group {
-                SocionicsDescriptionRow(title: "Общее описание", subtitle: "Коротко о типе", description: {
-                    Text(viewStore.state.sociotype.type.description.general)
-                        .font(Theme.Socionics.Fonts.PTRootUI.regular(size: 14))
-                })
-                SocionicsDescriptionRow(title: "Модель А", subtitle: "Описание функций модели", description: {
+                ExpandableRow(
+                    title: "Общее описание",
+                    subtitle: "Коротко о типе",
+                    description: {
+                        Text(viewStore.state.sociotype.description.general)
+                            .font(Theme.Socionics.Fonts.PTRootUI.regular(size: 14))
+                    }
+                )
+                ExpandableRow(title: "Модель А", subtitle: "Описание функций модели", description: {
                     VStack(alignment: .leading, spacing: 16) {
-                        ForEach(viewStore.state.sociotype.type.description.modelA, id: \.position.string) { model in
-                            ModelARowsView(model: model)
+                        ForEach(viewStore.state.sociotype.description.modelA, id: \.position.string) { model in
+                            ModelARowView(model: model)
                         }
                     }
                 })
@@ -57,7 +61,7 @@ struct SociotypeDetailView: View {
         }
     }
     
-    struct ModelARowsView: View {
+    struct ModelARowView: View {
         var model: SociotypeDescriptionModel.SociotypeFunctionModel
         
         var body: some View {
@@ -110,47 +114,6 @@ struct SociotypeDetailView: View {
             }
     }
     
-    struct SocionicsDescriptionRow<Content: View>: View {
-        let title: String
-        let subtitle: String
-        let description: () -> Content
-        var icon: Image?
-        
-        @State var isEnlargedContent = false
-        
-        var body: some View {
-            content
-                .onTapGesture {
-                    withAnimation {
-                        isEnlargedContent.toggle()
-                    }
-                }
-        }
-        
-        var content: some View {
-            rowView
-        }
-        
-        var rowView: some View {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(Theme.Socionics.Fonts.PTRootUI.medium(size: 18))
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-                Text(subtitle)
-                    .font(Theme.Socionics.Fonts.PTRootUI.medium(size: 16))
-                    .foregroundStyle(Theme.Socionics.Colors.secondaryText)
-                icon
-                    .font(Theme.Socionics.Fonts.PTRootUI.medium(size: 10))
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-                if isEnlargedContent {
-                    description()
-                        .padding(.top, 4)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-    }
-    
     struct CollageView: View {
         struct Inch {
             var side: CGFloat = 25
@@ -196,26 +159,26 @@ struct SociotypeDetailView: View {
                 VStack(spacing: .zero) {
                     HStack(spacing: .zero) {
                         VStack(spacing: .zero) {
-                            makePhoto(photo: photos[0],inch: Inch(widthMP: 6, heightMP: 8))
-                            makePhoto(photo: photos[1],inch: Inch(widthMP: 6, heightMP: 6))
+                            post(photo: photos[0],inch: Inch(widthMP: 6, heightMP: 8))
+                            post(photo: photos[1],inch: Inch(widthMP: 6, heightMP: 6))
                         }
-                        makePhoto(photo: photos[3],inch: Inch(widthMP: 12, heightMP: 14))
+                        post(photo: photos[3],inch: Inch(widthMP: 12, heightMP: 14))
                         VStack(spacing: .zero) {
-                        makePhoto(photo: photos[5],inch: Inch(widthMP: 11, heightMP: 5))
-                            makePhoto(photo: photos[6],inch: Inch(widthMP: 11, heightMP: 9))
+                            post(photo: photos[5],inch: Inch(widthMP: 11, heightMP: 5))
+                            post(photo: photos[6],inch: Inch(widthMP: 11, heightMP: 9))
                         }
                     }
                 }
                 HStack(spacing: .zero) {
-                    makePhoto(photo: photos[2],inch: Inch(widthMP: 12, heightMP: 6))
-                    makePhoto(photo: photos[4],inch: Inch(widthMP: 11, heightMP: 6))
-                    makePhoto(photo: photos[7],inch: Inch(widthMP: 6, heightMP: 6))
+                    post(photo: photos[2],inch: Inch(widthMP: 12, heightMP: 6))
+                    post(photo: photos[4],inch: Inch(widthMP: 11, heightMP: 6))
+                    post(photo: photos[7],inch: Inch(widthMP: 6, heightMP: 6))
                 }
             }
         }
         
         
-        func makePhoto(photo: Image, inch: Inch) -> some View {
+        func post(photo: Image, inch: Inch) -> some View {
             return photo
                 .resizable()
                 .scaledToFill()
@@ -231,7 +194,7 @@ struct SociotypeDetailView: View {
 }
 
 #Preview {
-    SociotypeDetailView(store: Store(initialState: SociotypeDetailDomain.State(sociotype: .robespierre), reducer: {
+    SociotypeDetailView(store: Store(initialState: SociotypeDetailDomain.State(sociotype: SociotypeFactory.robespierre.type), reducer: {
         SociotypeDetailDomain()
     }))
 }

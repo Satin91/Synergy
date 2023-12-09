@@ -8,39 +8,6 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ReininSignsDomain: Reducer {
-    
-    struct State: Equatable {
-        var sociotype: SociotypeFactory
-        var sociotypes = SociotypeFactory.allCases
-        var position: Int = 0
-    }
-    
-    enum Action: Equatable  {
-        case backType
-        case nextType
-    }
-    
-    var body: some ReducerOf<Self> {
-        Reduce { state, action in
-            switch action {
-            case .backType:
-                if state.position - 1 >= 0 {
-                    state.position -= 1
-                }
-                state.sociotype = state.sociotypes[state.position]
-                return .none
-            case .nextType:
-                if  state.position + 1 <= state.sociotypes.count - 1 {
-                    state.position += 1
-                }
-                state.sociotype = state.sociotypes[state.position]
-                return .none
-            }
-        }
-    }
-}
-
 struct ReininSignsView: View {
     let store: StoreOf<ReininSignsDomain>
     
@@ -51,18 +18,15 @@ struct ReininSignsView: View {
     var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
-                Text(viewStore.sociotype.type.socioNickname)
+                Text(viewStore.sociotype.socioNickname)
                 ForEach(0..<Rainin.signPairs.count, id: \.self) { index in
-                    rainingSign(pair: Rainin.signPairs[index].signs, actual: viewStore.sociotype.type.raininSigns[index])
+                    rainingSign(pair: Rainin.signPairs[index].signs, actual: viewStore.sociotype.raininSigns[index])
                 }
                 buttons
             }
         }
     }
     
-    
-    
-    // Make View
     func rainingSign(pair: (Rainin, Rainin), actual: Rainin) -> some View {
         VStack {
             HStack {
@@ -88,7 +52,7 @@ struct ReininSignsView: View {
 }
 
 #Preview {
-    ReininSignsView(store: Store(initialState: ReininSignsDomain.State(sociotype: .robespierre), reducer: {
+    ReininSignsView(store: Store(initialState: ReininSignsDomain.State(sociotype: SociotypeFactory.robespierre.type), reducer: {
         ReininSignsDomain()
     }))
 }

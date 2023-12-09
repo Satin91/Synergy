@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct SeparatorView: View {
+    
+    let height: CGFloat
+    let color: Color
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        content
+    }
+    
+    private var content: some View {
+        divider
+    }
+    
+    private var divider: some View {
+        Rectangle()
+            .foregroundStyle(color)
+            .cornerRadius(height / 2)
     }
 }
 
 #Preview {
-    SeparatorView()
+    SeparatorView(height: 2, color: .accentColor)
 }

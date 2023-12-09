@@ -8,48 +8,9 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct SociotypeMainPageDomain: Reducer {
-    struct State: Equatable {
-        var sociotype: Sociotype
-        var position: Int = 0
-    }
-    
-    enum Action: Equatable {
-        case backButtonTapped
-        case nextType
-        case backType
-    }
-    
-    @Dependency(\.dismiss) var dismiss
-    
-    var body: some ReducerOf<Self> {
-        Reduce { state, action in
-            switch action {
-            case .backButtonTapped:
-                return .run { send in
-                    await self.dismiss()
-                }
-            case .nextType:
-                if state.position + 1 <= Sociotype.allCases.count - 1 {
-                    state.position += 1
-                }
-                state.sociotype = Sociotype.allCases[state.position]
-                return .none
-            case .backType:
-                if state.position - 1 >= 0 {
-                    state.position -= 1
-                }
-                state.sociotype = Sociotype.allCases[state.position]
-                return .none
-            }
-        }
-    }
-}
-
-
-struct SociotypeMainPageView: View {
-    typealias ViewStoreAlias = ViewStore<SociotypeMainPageDomain.State, SociotypeMainPageDomain.Action>
-    let store: StoreOf<SociotypeMainPageDomain>
+struct SociotypeView: View {
+    typealias ViewStoreAlias = ViewStore<SociotypeDomain.State, SociotypeDomain.Action>
+    let store: StoreOf<SociotypeDomain>
     
     var body: some View {
         content
@@ -62,6 +23,7 @@ struct SociotypeMainPageView: View {
             VStack {
                 navigationBar
                 sociotypeContainer(viewStore: viewStore)
+                radialDiagramm(viewStore: viewStore)
                 Spacer()
                 tempButtonsContainer
                 buttonContainer(viewStore: viewStore)
@@ -92,11 +54,11 @@ struct SociotypeMainPageView: View {
             .frame(height: 180)
             .overlay {
                 VStack(alignment: .leading) {
-                    Text(Array(viewStore.sociotype.type.socioName.components(separatedBy: " ").dropLast()).joined(separator: " "))
+                    Text(Array(viewStore.sociotype.socioName.components(separatedBy: " ").dropLast()).joined(separator: " "))
                         .font(Theme.Socionics.Fonts.Inter.light(size: 26))
                         .foregroundStyle(Theme.Socionics.Colors.mainText)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(viewStore.sociotype.type.socioName.components(separatedBy: " ").last!)
+                    Text(viewStore.sociotype.socioName.components(separatedBy: " ").last!)
                         .font(Theme.Socionics.Fonts.Inter.bold(size: 26))
                         .foregroundStyle(Theme.Socionics.Colors.mainText)
                     Spacer()
@@ -111,28 +73,42 @@ struct SociotypeMainPageView: View {
             }
     }
     
+    func radialDiagramm(viewStore: ViewStoreAlias) -> some View {
+        RoundedRectangle(cornerRadius: 14)
+            .foregroundStyle(Color.white)
+            .overlay {
+                RadialDiagram(
+                    functions: [
+                        viewStore.sociotype.description.modelA[0].function,
+                        viewStore.sociotype.description.modelA[1].function,
+                        viewStore.sociotype.description.modelA[2].function,
+                        viewStore.sociotype.description.modelA[3].function
+                               ]
+                )
+            }
+    }
+    
     func buttonContainer(viewStore: ViewStoreAlias) -> some View {
-        VStack {
+        VStack(spacing: 16) {
             NavigationLink(state: MainDomain.Path.State.reininSigns(ReininSignsDomain.State(sociotype: viewStore.sociotype))) {
                 SocionicsButton(
                     size: .large(title: "Интертипные отношения", subtitle: "Отношения ЛИИ с другими типами"),
                     image: Theme.Socionics.Icons.intertype,
-                    imageColor: Theme.Socionics.Colors.mainText
+                    imageColor: Theme.Socionics.Colors.red
                 )
             }
             NavigationLink(state: MainDomain.Path.State.reininSigns(ReininSignsDomain.State(sociotype: viewStore.sociotype))) {
                 SocionicsButton(
                     size: .large(title: "Признаки рейнина", subtitle: "Дополнительное описание"),
                     image: Theme.Socionics.Icons.reinin,
-                    imageColor: Theme.Socionics.Colors.mainText
+                    imageColor: Theme.Socionics.Colors.blue
                 )
             }
         }
     }
     
     private func moreDetailButton(viewStore: ViewStoreAlias) -> some View {
-        
-        NavigationLink(state: MainDomain.Path.State.sociotypeDetail(SociotypeDetaiDomain.State(sociotype: viewStore.sociotype ))) {
+        NavigationLink(state: MainDomain.Path.State.sociotypeDetail(SociotypeDetailDomain.State(sociotype: viewStore.sociotype ))) {
             Text("Подробнее")
                 .font(Theme.Socionics.Fonts.PTRootUI.medium(size: 14))
                 .foregroundStyle(Theme.Socionics.Colors.mainText)
@@ -153,12 +129,12 @@ struct SociotypeMainPageView: View {
     func modelAContainer(viewStore: ViewStoreAlias) -> some View {
         VStack {
             HStack {
-                SocionicsFunctionView(function: viewStore.sociotype.type.description.modelA[0].function)
-                SocionicsFunctionView(function: viewStore.sociotype.type.description.modelA[1].function)
+                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[0].function)
+                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[1].function)
             }
             HStack {
-                SocionicsFunctionView(function: viewStore.sociotype.type.description.modelA[3].function)
-                SocionicsFunctionView(function: viewStore.sociotype.type.description.modelA[2].function)
+                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[3].function)
+                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[2].function)
             }
         }
     }
@@ -210,8 +186,8 @@ struct SociotypeMainPageView: View {
 }
 
 #Preview {
-    SociotypeMainPageView(store: Store(initialState: SociotypeMainPageDomain.State(sociotype: .hugo)) {
-        SociotypeMainPageDomain()
+    SociotypeView(store: Store(initialState: SociotypeDomain.State(sociotype: SociotypeFactory.robespierre.type)) {
+        SociotypeDomain()
     }
     )
 }

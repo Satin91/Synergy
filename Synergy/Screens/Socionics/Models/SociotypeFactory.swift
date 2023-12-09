@@ -51,7 +51,16 @@ enum SociotypeList {
                 .init(position: .restrictive, function: .whiteIntuition, description: "Дон Кихот не любит, когда его временем распоряжаются как своим. При этом, сам склонен больше не к планированию времени, а к действиям по ситуации. Иногда может забыть сделать обещанное к назначенному сроку. Обладает тактическим мышлением. Предсказания, основанные на мистике, игнорирует."),
                 .init(position: .background, function: .blackLogic, description: "Дон Кихоты – активные люди, имеющие представление о том, как делается та или иная работа, имеют большой потенциал в бизнесе, однако профессиональную дисциплину они могут игнорировать. Не желают действовать по образцу просто потому, что это установленный образ действий. Находят решения в работе в самых нестандартных ситуациях. Если работа становится скучной для них, теряют интерес и делают её спустя рукава."),
             ],
-            popularPersons: []
+            popularPersons: [
+                Theme.Socionics.Photos.Robespierres.irina_khakamada,
+                Theme.Socionics.Photos.Robespierres.immanuel_kant,
+                Theme.Socionics.Photos.Robespierres.mads_mikkelsen,
+                Theme.Socionics.Photos.Robespierres.robert_oppenheimer,
+                Theme.Socionics.Photos.Robespierres.maria_curie,
+                Theme.Socionics.Photos.Robespierres.nikola_tesla,
+                Theme.Socionics.Photos.Robespierres.vladimir_putin,
+                Theme.Socionics.Photos.Robespierres.ludvig_van_bethoven
+            ]
         )
     )
     
@@ -76,7 +85,16 @@ enum SociotypeList {
                 .init(position: .restrictive, function: .blackSensorics, description: "Открытого волевого давление не оказывает, хотя может это сделать в критичной ситуации. Ситуации противостояния нарушают его смысловую гармонию. Жесткую конкуренцию избегает. Знает на что обращают внимание люди противоположного пола и умеет подчеркнуть свои достоинства. Способен поставить рамки нежелательным для себя людям. Критичен к проявлению волевого нажима в свою сторону."),
                 .init(position: .background, function: .whiteEthics, description: "Говорит об отношениях, кто ему понравился, кто нет, выражает своё отношение, проявляет душевный стиль общения. Окружающие, как правило, ценят душевность Дюма. Его не особо волнует тема морали. Дипломатичен и уступчив, отзывчив к боли и страданиям других.")
             ],
-            popularPersons: []
+            popularPersons: [
+                Theme.Socionics.Photos.Robespierres.irina_khakamada,
+                Theme.Socionics.Photos.Robespierres.immanuel_kant,
+                Theme.Socionics.Photos.Robespierres.mads_mikkelsen,
+                Theme.Socionics.Photos.Robespierres.robert_oppenheimer,
+                Theme.Socionics.Photos.Robespierres.maria_curie,
+                Theme.Socionics.Photos.Robespierres.nikola_tesla,
+                Theme.Socionics.Photos.Robespierres.vladimir_putin,
+                Theme.Socionics.Photos.Robespierres.ludvig_van_bethoven
+            ]
         )
     )
     
@@ -100,7 +118,16 @@ enum SociotypeList {
                 .init(position: .restrictive, function: .whiteEthics, description: "Гюго наблюдают за проявлением чувств других людей и за своими отношениям. Стремятся выстраивать постоянные романтические отношения, а не мимолетные увлечения. Однако, если партнёр не поддерживает эмоции Гюго, он уходит к другому, потому что ему хочется, чтобы отношения были яркими. Говорить об утешении, моральных нормах не интересно. Но иногда почитать мораль может, осуждает грубость в отношениях. Гюго, как правило, не очень словоохотливы относительно своей прошлой личной жизни."),
                 .init(position: .background, function: .blackSensorics, description: "Гюго – сильные личности и достигаторы, часто занимаются спортом. Это настойчивые, упрямые, напористые люди. Им важен статус и престиж, но редко в этом признаются. Порой играют в просточка, таким не являясь. Волевой нажим для Гюго – это инструмент защиты личных интересов. Внешняя презентабельность Гюго – ресурс в первую очередь для того, чтобы вызвать эмоции в других людях, создать впечатление о себе."),
             ],
-            popularPersons: []
+            popularPersons: [
+                Theme.Socionics.Photos.Robespierres.irina_khakamada,
+                Theme.Socionics.Photos.Robespierres.immanuel_kant,
+                Theme.Socionics.Photos.Robespierres.mads_mikkelsen,
+                Theme.Socionics.Photos.Robespierres.robert_oppenheimer,
+                Theme.Socionics.Photos.Robespierres.maria_curie,
+                Theme.Socionics.Photos.Robespierres.nikola_tesla,
+                Theme.Socionics.Photos.Robespierres.vladimir_putin,
+                Theme.Socionics.Photos.Robespierres.ludvig_van_bethoven
+            ]
     )
 )
     
