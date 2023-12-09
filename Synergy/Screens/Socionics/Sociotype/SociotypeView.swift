@@ -79,10 +79,10 @@ struct SociotypeView: View {
             .overlay {
                 RadialDiagram(
                     functions: [
-                        viewStore.sociotype.description.modelA[0].function,
-                        viewStore.sociotype.description.modelA[1].function,
-                        viewStore.sociotype.description.modelA[2].function,
-                        viewStore.sociotype.description.modelA[3].function
+                        viewStore.sociotype.description.modelA[0].aspect,
+                        viewStore.sociotype.description.modelA[1].aspect,
+                        viewStore.sociotype.description.modelA[2].aspect,
+                        viewStore.sociotype.description.modelA[3].aspect
                                ]
                 )
             }
@@ -129,57 +129,58 @@ struct SociotypeView: View {
     func modelAContainer(viewStore: ViewStoreAlias) -> some View {
         VStack {
             HStack {
-                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[0].function)
-                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[1].function)
+                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[0].aspect)
+                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[1].aspect)
             }
             HStack {
-                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[3].function)
-                SocionicsFunctionView(function: viewStore.sociotype.description.modelA[2].function)
+                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[3].aspect)
+                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[2].aspect)
             }
         }
     }
     
-    struct SocionicsFunctionView: View {
-        let function: SocionicsFunction.Name
+    struct SocionicsAspectView: View {
+        let aspect: Aspect
         
         var body: some View {
             content
         }
         
         private var content: some View {
-            switch function {
+            switch aspect {
             case .whiteLogic:
                 return Theme.Socionics.Icons.logic
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
             case .whiteIntuition:
                 return Theme.Socionics.Icons.intuition
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
             case .whiteEthics:
                 return Theme.Socionics.Icons.ethics
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
             case .whiteSensorics:
                 return Theme.Socionics.Icons.sensorics
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
             case .blackLogic:
                 return Theme.Socionics.Icons.logic
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.mainText)
             case .blackIntuition:
                 return Theme.Socionics.Icons.intuition
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
+                
+                    .foregroundStyle(Theme.Socionics.Colors.mainText)
             case .blackEthics:
                 return Theme.Socionics.Icons.ethics
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.mainText)
             case .blackSensorics:
                 return Theme.Socionics.Icons.sensorics
                     .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
+                    .foregroundStyle(Theme.Socionics.Colors.mainText)
             }
         }
     }

@@ -13,115 +13,13 @@ struct SociotypeModel: Equatable {
     var socioName: String // Логико-Интуитивный Интроверт
     var socioNickname: String // Робеспьер
     
-    var imbtName: String // INTJ
+    var imbtShortName: String // INTJ
     var imbtNickName: String // Аналитик
     var raininSigns: [Rainin]
     
     var description: SociotypeDescriptionModel
 }
 
-enum SocionicsFunction {
-    enum Name {
-        case whiteLogic
-        case whiteIntuition
-        case whiteEthics
-        case whiteSensorics
-        case blackLogic
-        case blackIntuition
-        case blackEthics
-        case blackSensorics
-        
-        var string: String {
-            switch self {
-            case .whiteLogic:
-                "Структурная логика"
-            case .whiteIntuition:
-                "Интуиция времени"
-            case .whiteEthics:
-                "Этика отношений"
-            case .whiteSensorics:
-                "Сенсорика ощущения"
-            case .blackLogic:
-                "Деловая логика"
-            case .blackIntuition:
-                "Интуиция возможностей"
-            case .blackEthics:
-                "Этика эмоций"
-            case .blackSensorics:
-                "Волевая сенсорика"
-            }
-        }
-        
-        var image: some View {
-            switch self {
-            case .whiteLogic:
-                return Theme.Socionics.Icons.logic
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
-            case .whiteIntuition:
-                return Theme.Socionics.Icons.intuition
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
-            case .whiteEthics:
-                return Theme.Socionics.Icons.ethics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
-            case .whiteSensorics:
-                return Theme.Socionics.Icons.sensorics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.whiteFunction)
-            case .blackLogic:
-                return Theme.Socionics.Icons.logic
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
-            case .blackIntuition:
-                return Theme.Socionics.Icons.intuition
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
-            case .blackEthics:
-                return Theme.Socionics.Icons.ethics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
-            case .blackSensorics:
-                return Theme.Socionics.Icons.sensorics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.blackFunction)
-            }
-        }
-    }
-    
-    enum Position {
-        case leading
-        case creative
-        case role
-        case vulnerable
-        case suggestive
-        case mobilizing
-        case restrictive
-        case background
-        
-        var string: String {
-            switch self {
-            case .leading:
-                "Базовая"
-            case .creative:
-                "Творческая"
-            case .role:
-                "Ролевая"
-            case .vulnerable:
-                "Болевая"
-            case .suggestive:
-                "Суггестивная"
-            case .mobilizing:
-                "Активационная"
-            case .restrictive:
-                "Ограничительная"
-            case .background:
-                "Фоновая"
-            }
-        }
-    }
-}
 
 
 

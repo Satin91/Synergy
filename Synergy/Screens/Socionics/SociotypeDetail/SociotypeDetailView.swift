@@ -62,7 +62,7 @@ struct SociotypeDetailView: View {
     }
     
     struct ModelARowView: View {
-        var model: SociotypeDescriptionModel.SociotypeFunctionModel
+        var model: SociotypeAspectModel
         
         var body: some View {
             content
@@ -71,7 +71,7 @@ struct SociotypeDetailView: View {
         var content: some View {
             VStack {
                 HStack {
-                    model.function.image
+                    model.aspect.image
                         .frame(width: 30, height: 30)
                     VStack(alignment: .leading){
                         titleView
@@ -90,7 +90,7 @@ struct SociotypeDetailView: View {
         }
         
         var subtitleView: some View {
-            Text(model.function.string)
+            Text(model.aspect.string)
                 .font(Theme.Socionics.Fonts.Inter.regular(size: 16))
                 .foregroundStyle(Theme.Socionics.Colors.mainText)
         }

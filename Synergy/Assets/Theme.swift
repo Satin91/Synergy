@@ -21,11 +21,10 @@ enum Theme {
             static let mainText = Color("S_mainText")
             static let mint = Color("S_mint")
             static let secondaryText = Color("S_secondaryText")
+            static let lightGray = Color("S_lightGray")
             static let violet = Color("S_violet")
             static let clear = Color.clear
             static let blue = Color("S_blue")
-            static let blackFunction = Color("S_blackFunction")
-            static let whiteFunction = Color("S_whiteFunction")
         }
         
         enum Fonts {
@@ -70,8 +69,6 @@ enum Theme {
             }
         }
     }
-    
-    
     
     enum Astrology {
         enum Colors {

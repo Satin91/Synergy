@@ -8,76 +8,6 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct MainDomain: Reducer {
-    struct State: Equatable {
-        var path = StackState<Path.State>()
-        @PresentationState var socionics: SociotypeDomain.State?
-        @PresentationState var astrology: AstrologyDomain.State?
-        @PresentationState var reininSigns: ReininSignsDomain.State?
-        @PresentationState var socionicsDetailView: SociotypeDetailDomain.State?
-    }
-    
-    enum Action: Equatable {
-        case path(StackAction<Path.State, Path.Action>)
-    }
-    
-    struct Path: Reducer {
-        enum State: Equatable {
-            case socionics(SociotypeDomain.State)
-            case astrology(AstrologyDomain.State)
-            case reininSigns(ReininSignsDomain.State)
-            case sociotypeDetail(SociotypeDetailDomain.State)
-        }
-        
-        enum Action: Equatable {
-            case socionics(SociotypeDomain.Action)
-            case astrology(AstrologyDomain.Action)
-            case reininSigns(ReininSignsDomain.Action)
-            case sociotypeDetail(SociotypeDetailDomain.Action)
-        }
-        
-        var body: some ReducerOf<Self> {
-            Scope(state: /State.socionics, action: /Action.socionics) {
-                SociotypeDomain()
-            }
-            Scope(state: /State.astrology, action: /Action.astrology) {
-                AstrologyDomain()
-            }
-            Scope(state: /State.reininSigns, action: /Action.reininSigns) {
-                ReininSignsDomain()
-            }
-            Scope(state: /State.sociotypeDetail, action: /Action.sociotypeDetail) {
-                SociotypeDetailDomain()
-            }
-        }
-    }
-    
-    var body: some ReducerOf<Self> {
-        Reduce { state, action in
-            switch action {
-            case let .path(.element(id: _, action: action)):
-                switch action {
-                case .socionics(_):
-                    return .none
-                case .astrology(_):
-                    return . none
-                case .reininSigns(_):
-                    return .none
-                case .sociotypeDetail(_):
-                    return .none
-                }
-            case .path:
-                return .none
-            }
-        }
-        .forEach(\.path, action: /Action.path) {
-            Path()
-        }
-    }
-    
-    
-}
-
 struct MainView: View {
     let store: StoreOf<MainDomain>
     
@@ -129,6 +59,7 @@ struct MainView: View {
                 }
                 Spacer()
             }
+            .background(Color.black)
         }
     }
     var navigationBar: some View {
@@ -149,13 +80,17 @@ struct SphereButton: View {
     }
     
     var content: some View {
-        Circle()
-            .foregroundStyle(.gray.opacity(0.3))
-            .background(Color.clear)
-            .overlay {
+        RoundedRectangle(cornerRadius: 12)
+            .foregroundStyle(Theme.Socionics.Colors.lightGray)
+            .overlay(content: {
                 Text(title)
-            }
-            .frame(width: 100, height: 100)
+                    .font(.footnote)
+            })
+            .overlay(content: {
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(lineWidth: 1)
+            })
+            .frame(width: 100, height: 40)
     }
 }
 

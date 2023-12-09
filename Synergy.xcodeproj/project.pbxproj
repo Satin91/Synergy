@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8E2564DC2B24C44000FA2C08 /* SociotypeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2564DB2B24C44000FA2C08 /* SociotypeDescription.swift */; };
 		8E2564DE2B24C44600FA2C08 /* Rainin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2564DD2B24C44600FA2C08 /* Rainin.swift */; };
+		8E2564E02B24C9DA00FA2C08 /* Aspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2564DF2B24C9DA00FA2C08 /* Aspect.swift */; };
+		8E2564E22B24F54200FA2C08 /* MainDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2564E12B24F54200FA2C08 /* MainDomain.swift */; };
 		8E44CA1A2B2387E40013876D /* RadialDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E44CA192B2387E40013876D /* RadialDiagram.swift */; };
 		8E64F24D2B00150A009ED513 /* SociotypeDetailDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64F24C2B00150A009ED513 /* SociotypeDetailDomain.swift */; };
 		8E64F2512B0015F2009ED513 /* ReininSignsDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64F2502B0015F2009ED513 /* ReininSignsDomain.swift */; };
@@ -49,6 +51,8 @@
 /* Begin PBXFileReference section */
 		8E2564DB2B24C44000FA2C08 /* SociotypeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeDescription.swift; sourceTree = "<group>"; };
 		8E2564DD2B24C44600FA2C08 /* Rainin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rainin.swift; sourceTree = "<group>"; };
+		8E2564DF2B24C9DA00FA2C08 /* Aspect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aspect.swift; sourceTree = "<group>"; };
+		8E2564E12B24F54200FA2C08 /* MainDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDomain.swift; sourceTree = "<group>"; };
 		8E44CA192B2387E40013876D /* RadialDiagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialDiagram.swift; sourceTree = "<group>"; };
 		8E64F24C2B00150A009ED513 /* SociotypeDetailDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociotypeDetailDomain.swift; sourceTree = "<group>"; };
 		8E64F2502B0015F2009ED513 /* ReininSignsDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReininSignsDomain.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				8E7B53192AE597DF0031E807 /* SociotypeModel.swift */,
 				8E2564DB2B24C44000FA2C08 /* SociotypeDescription.swift */,
 				8E2564DD2B24C44600FA2C08 /* Rainin.swift */,
+				8E2564DF2B24C9DA00FA2C08 /* Aspect.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				8EF9DA202AE13D100029DD68 /* MainView.swift */,
+				8E2564E12B24F54200FA2C08 /* MainDomain.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E2564E02B24C9DA00FA2C08 /* Aspect.swift in Sources */,
 				8E64F24D2B00150A009ED513 /* SociotypeDetailDomain.swift in Sources */,
 				8ED6EF012AF4451F000B290A /* SeparatorView.swift in Sources */,
 				8E64F2512B0015F2009ED513 /* ReininSignsDomain.swift in Sources */,
@@ -400,6 +407,7 @@
 				8E44CA1A2B2387E40013876D /* RadialDiagram.swift in Sources */,
 				8E94C0022AE4879D00E838C9 /* Theme.swift in Sources */,
 				8EF9DA242AE13F650029DD68 /* NavigationBar.swift in Sources */,
+				8E2564E22B24F54200FA2C08 /* MainDomain.swift in Sources */,
 				8E7B531C2AE5C7280031E807 /* ReininSignsView.swift in Sources */,
 				8E94C0072AE48ED600E838C9 /* SocionicsButton.swift in Sources */,
 				8E66E8DE2AE6D6B400FDBE6F /* SociotypeDetailView.swift in Sources */,

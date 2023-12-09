@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RadialDiagram: View {
     
-    private let foregroundColor = Theme.Socionics.Colors.secondaryText
+    private let foregroundColor = Theme.Socionics.Colors.lightGray
     
     private var numberOfCircles: Int = 4
     private var numberOfLines: Int = 4
@@ -32,11 +32,11 @@ struct RadialDiagram: View {
         content
     }
     
-    init(functions: [SocionicsFunction.Name]) {
+    init(functions: [Aspect]) {
         self.functionArray = functions
     }
     
-    var functionArray: [SocionicsFunction.Name]
+    var functionArray: [Aspect]
     
     var content: some View {
         ZStack {
@@ -81,7 +81,7 @@ struct RadialDiagram: View {
         Double(maxDiameter) / 2
     }
 
-    private func balls(function: [SocionicsFunction.Name]) -> some View {
+    private func balls(function: [Aspect]) -> some View {
         ZStack {
             ForEach(0..<numberOfCircles, id: \.self) { index in
                 Circle()
@@ -95,7 +95,7 @@ struct RadialDiagram: View {
         }
     }
     
-    func ballAngle(f: SocionicsFunction.Name) -> Double {
+    func ballAngle(f: Aspect) -> Double {
         switch f {
         case .whiteLogic:
             lineDegree * 6

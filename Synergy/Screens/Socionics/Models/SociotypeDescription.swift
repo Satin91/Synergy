@@ -9,14 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SociotypeDescriptionModel: Equatable {
-    
-    struct SociotypeFunctionModel: Equatable {
-        var position: SocionicsFunction.Position
-        var function: SocionicsFunction.Name
-        var description: String
-    }
-    
     let general: String
-    var modelA: [SociotypeFunctionModel]
+    var modelA: [SociotypeAspectModel]
     var popularPersons: [Image]
 }
