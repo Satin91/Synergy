@@ -9,92 +9,135 @@ import SwiftUI
 
 struct RadialDiagram: View {
     
-    private let foregroundColor = Theme.Socionics.Colors.lightGray
+    var linesColor: Color
+    var ballsColor: Color
     
     private var numberOfCircles: Int = 4
-    private var numberOfLines: Int = 4
+    private var numberOfLines: Int = 8
     
-    private let minDiameter: CGFloat = 100
-    private let circleDiff: CGFloat = 30
-    private let lineWidth: CGFloat = 2
-    private let ballDiameter: CGFloat = 10
+    private let circleDiff: CGFloat = 20
+    private let ballDiameter: CGFloat = 6
+    private let imageSize: CGFloat = 12
+    private var imageCirclePadding: CGFloat = 40
     
     
-    private var lineDegree: Double {
-        360 / Double(numberOfLines * 2)
+    private let lineWidth: CGFloat = 1
+    private var lineHeight: CGFloat {
+        (CGFloat(numberOfCircles) - 1) * circleDiff / 2
     }
     
-    private var maxDiameter: CGFloat {
-        minDiameter + (CGFloat(numberOfCircles - 1) * circleDiff)
+    let aspects: [Aspect] = [
+        Aspect.blackLogic,
+        Aspect.blackIntuition,
+        Aspect.blackEthics,
+        Aspect.whiteIntuition,
+        Aspect.whiteEthics,
+        Aspect.whiteSensorics,
+        Aspect.whiteLogic,
+        Aspect.blackSensorics
+    ]
+    
+    var functionArray: [Aspect]
+    
+    private var lineDegree: Double {
+        360 / Double(numberOfLines)
     }
     
     var body: some View {
         content
     }
     
-    init(functions: [Aspect]) {
+    init(functions: [Aspect], linesColor: Color, ballsColor: Color) {
         self.functionArray = functions
+        self.linesColor = linesColor
+        self.ballsColor = ballsColor
     }
-    
-    var functionArray: [Aspect]
     
     var content: some View {
         ZStack {
-            circles
-            lines
-            Circle()
-                .frame(height: minDiameter - lineWidth)
-                .foregroundStyle(.white)
-            balls(function: functionArray)
+            GeometryReader { proxy in
+                circles(proxy: proxy)
+                lines(proxy: proxy)
+                balls(proxy: proxy, point: functionArray)
+                annotations(proxy: proxy)
+            }
         }
     }
     
-    var circles: some View {
-        ZStack {
+    private func circles(proxy: GeometryProxy) -> some View {
+        let center = CGPoint(x: proxy.size.height / 2, y: proxy.size.height / 2)
+        let startDiameter = proxy.size.height - (imageCirclePadding)
+        return ForEach(0..<numberOfCircles, id: \.self) { index in
+            Circle()
+                .stroke(lineWidth: lineWidth)
+                .foregroundStyle(linesColor)
+                .position(center)
+                .frame(
+                    width: abs(startDiameter - (CGFloat(index) * circleDiff)),
+                    height: abs(startDiameter - (CGFloat(index) * circleDiff))
+                )
+        }
+    }
+    
+    private func lines(proxy: GeometryProxy) -> some View {
+        let center = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)
+        let yOffset = (proxy.size.height / 2) - (lineHeight / 2) - imageCirclePadding / 2
+        return ForEach(0...numberOfLines, id: \.self) { index in
+            line
+                .position(center)
+                .offset(x: .zero, y: yOffset)
+                .rotationEffect(.degrees(Double(index) * lineDegree))
+        }
+    }
+    
+    private func balls(proxy: GeometryProxy, point: [Aspect]) -> some View {
+        let startRadius = (proxy.size.height / 2) - (imageCirclePadding / 2)
+        let center = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)
+        return ZStack {
             ForEach(0..<numberOfCircles, id: \.self) { index in
                 Circle()
-                    .stroke(lineWidth: lineWidth)
-                    .foregroundStyle(foregroundColor)
-                    .frame(
-                        height: minDiameter + CGFloat(index) * circleDiff
+                    .frame(width: ballDiameter)
+                    .foregroundStyle(self.ballsColor)
+                    .position(center)
+                    .offset(x: 0, y: startRadius - (CGFloat(index) * (circleDiff / 2)))
+                    .rotationEffect(
+                        Angle(degrees: 180 + ballAngle(f: point[index]))
                     )
             }
         }
     }
     
-    private var lines: some View {
-        ZStack {
-            ForEach(0...numberOfLines, id: \.self) { index in
-                line
-                    .rotationEffect(.degrees(Double(index) * lineDegree))
+    func annotations(proxy: GeometryProxy) -> some View {
+        let theta = CGFloat(2) * .pi / CGFloat(aspects.count)
+        return ZStack {
+            let center = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)
+            let radius = min(proxy.size.width / 2, proxy.size.height / 2) - imageSize / 2
+            let radialOffset: CGFloat = 1.96
+            ForEach(0..<aspects.count, id: \.self) { index in
+                let offset = theta * CGFloat(index) + theta / 2
+                aspects[index].image
+                    .position(center)
+                    .offset(
+                        x: radius * cos(offset - radialOffset),
+                        y: radius * sin(offset - radialOffset))
+                    .frame(width: imageSize, height: imageSize)
             }
         }
     }
     
     private var line: some View {
         Rectangle()
-            .foregroundStyle(foregroundColor)
-            .frame(width: lineWidth, height: maxDiameter)
+            .foregroundStyle(linesColor)
+            .frame(width: lineWidth, height: lineHeight)
     }
-    
-    var radius: Double {
-        Double(maxDiameter) / 2
-    }
+}
 
-    private func balls(function: [Aspect]) -> some View {
-        ZStack {
-            ForEach(0..<numberOfCircles, id: \.self) { index in
-                Circle()
-                    .frame(width: ballDiameter)
-                    .foregroundStyle(Theme.Socionics.Colors.red)
-                    .offset(x: 0, y: (maxDiameter / 2) - (CGFloat(index) * (circleDiff / 2)))
-                    .rotationEffect(
-                        Angle(degrees: 180 + ballAngle(f: function[index]))
-                    )
-            }
-        }
-    }
-    
+#Preview {
+    RadialDiagram(functions: [.whiteLogic, .blackIntuition, .whiteEthics, .blackSensorics], linesColor: Theme.Socionics.Colors.lightGray, ballsColor: Theme.Socionics.Colors.red)
+        .frame(width: 350, height: 350, alignment: .center)
+}
+
+extension RadialDiagram {
     func ballAngle(f: Aspect) -> Double {
         switch f {
         case .whiteLogic:
@@ -115,8 +158,4 @@ struct RadialDiagram: View {
             lineDegree * 7
         }
     }
-}
-
-#Preview {
-    RadialDiagram(functions: [.whiteLogic, .blackIntuition, .whiteEthics, .blackSensorics])
 }

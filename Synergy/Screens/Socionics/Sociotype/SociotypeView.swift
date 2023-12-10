@@ -20,7 +20,7 @@ struct SociotypeView: View {
     
     var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
+            VStack(spacing: 22) {
                 navigationBar
                 sociotypeContainer(viewStore: viewStore)
                 radialDiagramm(viewStore: viewStore)
@@ -28,7 +28,7 @@ struct SociotypeView: View {
                 tempButtonsContainer
                 buttonContainer(viewStore: viewStore)
             }
-            .padding()
+            .padding(16)
         }
     }
     
@@ -77,14 +77,30 @@ struct SociotypeView: View {
         RoundedRectangle(cornerRadius: 14)
             .foregroundStyle(Color.white)
             .overlay {
-                RadialDiagram(
-                    functions: [
-                        viewStore.sociotype.description.modelA[0].aspect,
-                        viewStore.sociotype.description.modelA[1].aspect,
-                        viewStore.sociotype.description.modelA[2].aspect,
-                        viewStore.sociotype.description.modelA[3].aspect
-                               ]
-                )
+                HStack(content: {
+                    RadialDiagram(
+                        functions: [
+                            viewStore.sociotype.description.modelA[0].aspect,
+                            viewStore.sociotype.description.modelA[1].aspect,
+                            viewStore.sociotype.description.modelA[2].aspect,
+                            viewStore.sociotype.description.modelA[3].aspect
+                        ],
+                        linesColor: Theme.Socionics.Colors.lightGray,
+                        ballsColor: Theme.Socionics.Colors.red
+                    )
+                    .frame(width: 150, height: 150)
+                    RadialDiagram(
+                        functions: [
+                            viewStore.sociotype.description.modelA[7].aspect,
+                            viewStore.sociotype.description.modelA[6].aspect,
+                            viewStore.sociotype.description.modelA[5].aspect,
+                            viewStore.sociotype.description.modelA[4].aspect
+                        ],
+                        linesColor: Theme.Socionics.Colors.lightGray,
+                        ballsColor: Theme.Socionics.Colors.blue
+                    )
+                    .frame(width: 150, height: 150)
+                })
             }
     }
     
