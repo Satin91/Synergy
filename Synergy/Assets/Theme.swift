@@ -25,6 +25,7 @@ enum Theme {
             static let violet = Color("S_violet")
             static let clear = Color.clear
             static let blue = Color("S_blue")
+            static let darkBlue = Color("S_darkBlue")
         }
         
         enum Fonts {

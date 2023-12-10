@@ -9,8 +9,9 @@ import SwiftUI
 
 struct RadialDiagram: View {
     
-    var linesColor: Color
-    var ballsColor: Color
+    let functionArray: [Aspect]
+    let linesColor: Color
+    let ballsColor: Color
     
     private var numberOfCircles: Int = 4
     private var numberOfLines: Int = 8
@@ -26,7 +27,7 @@ struct RadialDiagram: View {
         (CGFloat(numberOfCircles) - 1) * circleDiff / 2
     }
     
-    let aspects: [Aspect] = [
+    private let aspects: [Aspect] = [
         Aspect.blackLogic,
         Aspect.blackIntuition,
         Aspect.blackEthics,
@@ -36,8 +37,6 @@ struct RadialDiagram: View {
         Aspect.whiteLogic,
         Aspect.blackSensorics
     ]
-    
-    var functionArray: [Aspect]
     
     private var lineDegree: Double {
         360 / Double(numberOfLines)
@@ -112,7 +111,7 @@ struct RadialDiagram: View {
         return ZStack {
             let center = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)
             let radius = min(proxy.size.width / 2, proxy.size.height / 2) - imageSize / 2
-            let radialOffset: CGFloat = 1.96
+            let radialOffset: CGFloat = 1.97
             ForEach(0..<aspects.count, id: \.self) { index in
                 let offset = theta * CGFloat(index) + theta / 2
                 aspects[index].image

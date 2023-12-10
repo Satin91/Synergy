@@ -20,32 +20,41 @@ struct SociotypeView: View {
     
     var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(spacing: 22) {
+            VStack(spacing: .zero) {
                 navigationBar
-                sociotypeContainer(viewStore: viewStore)
-                radialDiagramm(viewStore: viewStore)
-                Spacer()
-                tempButtonsContainer
-                buttonContainer(viewStore: viewStore)
+                ScrollView {
+                    VStack(spacing: 22) {
+                        sociotypeContainer(viewStore: viewStore)
+                        radialDiagramm(viewStore: viewStore)
+                        Spacer()
+                        tempButtonsContainer
+                        buttonContainer(viewStore: viewStore)
+                    }
+                    .padding(16)
+                }
             }
-            .padding(16)
         }
     }
     
     var navigationBar: some View {
-        NavigationBar()
-            .addLeftContainer {
-                Button(action: {
-                    store.send(.backButtonTapped)
-                }, label: {
-                    Text("Back")
+        VStack {
+            NavigationBar()
+                .addLeftContainer {
+                    Button(action: {
+                        store.send(.backButtonTapped)
+                    }, label: {
+                        Text("Back")
+                    })
+                }
+                .addCentralContainer({
+                    Text("Типология")
+                        .font(Theme.Socionics.Fonts.Inter.medium(size: 18))
+                        .foregroundStyle(Theme.Socionics.Colors.mainText)
                 })
-            }
-            .addCentralContainer({
-                Text("Типология")
-                    .font(Theme.Socionics.Fonts.Inter.medium(size: 18))
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-            })
+                .padding()
+            Divider()
+        }
+        .background(Color.white)
     }
     
     func sociotypeContainer(viewStore: ViewStoreAlias) -> some View {
@@ -64,7 +73,6 @@ struct SociotypeView: View {
                     Spacer()
                     HStack(alignment: .bottom) {
                         modelAContainer(viewStore: viewStore)
-                            .frame(width: 50, height: 50)
                         Spacer()
                         moreDetailButton(viewStore: viewStore)
                     }
@@ -74,41 +82,53 @@ struct SociotypeView: View {
     }
     
     func radialDiagramm(viewStore: ViewStoreAlias) -> some View {
-        RoundedRectangle(cornerRadius: 14)
-            .foregroundStyle(Color.white)
-            .overlay {
-                HStack(content: {
-                    RadialDiagram(
-                        functions: [
-                            viewStore.sociotype.description.modelA[0].aspect,
-                            viewStore.sociotype.description.modelA[1].aspect,
-                            viewStore.sociotype.description.modelA[2].aspect,
-                            viewStore.sociotype.description.modelA[3].aspect
-                        ],
-                        linesColor: Theme.Socionics.Colors.lightGray,
-                        ballsColor: Theme.Socionics.Colors.red
-                    )
-                    .frame(width: 150, height: 150)
-                    RadialDiagram(
-                        functions: [
-                            viewStore.sociotype.description.modelA[7].aspect,
-                            viewStore.sociotype.description.modelA[6].aspect,
-                            viewStore.sociotype.description.modelA[5].aspect,
-                            viewStore.sociotype.description.modelA[4].aspect
-                        ],
-                        linesColor: Theme.Socionics.Colors.lightGray,
-                        ballsColor: Theme.Socionics.Colors.blue
-                    )
-                    .frame(width: 150, height: 150)
-                })
+        HStack {
+            VStack(spacing: 12) {
+                Text("Витальное кольцо")
+                    .font(Theme.Socionics.Fonts.Inter.light(size: 14))
+                    .foregroundStyle(Theme.Socionics.Colors.secondaryText)
+                RadialDiagram(
+                    functions: [
+                        viewStore.sociotype.description.modelA[0].aspect,
+                        viewStore.sociotype.description.modelA[1].aspect,
+                        viewStore.sociotype.description.modelA[2].aspect,
+                        viewStore.sociotype.description.modelA[3].aspect
+                    ],
+                    linesColor: Theme.Socionics.Colors.lightGray,
+                    ballsColor: Theme.Socionics.Colors.red
+                )
+                .frame(width: 150, height: 150)
             }
+            Spacer()
+            VStack(spacing: 12) {
+                Text("Ментальное кольцо")
+                    .font(Theme.Socionics.Fonts.Inter.light(size: 14))
+                    .foregroundStyle(Theme.Socionics.Colors.secondaryText)
+                RadialDiagram(
+                    functions: [
+                        viewStore.sociotype.description.modelA[7].aspect,
+                        viewStore.sociotype.description.modelA[6].aspect,
+                        viewStore.sociotype.description.modelA[5].aspect,
+                        viewStore.sociotype.description.modelA[4].aspect
+                    ],
+                    linesColor: Theme.Socionics.Colors.lightGray,
+                    ballsColor: Theme.Socionics.Colors.darkBlue
+                )
+                .frame(width: 150, height: 150)
+            }
+    
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(12)
     }
+    
     
     func buttonContainer(viewStore: ViewStoreAlias) -> some View {
         VStack(spacing: 16) {
             NavigationLink(state: MainDomain.Path.State.reininSigns(ReininSignsDomain.State(sociotype: viewStore.sociotype))) {
                 SocionicsButton(
-                    size: .large(title: "Интертипные отношения", subtitle: "Отношения ЛИИ с другими типами"),
+                    size: .large(title: "Интертипные отношения", subtitle: "Отношения \(viewStore.sociotype.socioShortName) с другими типами"),
                     image: Theme.Socionics.Icons.intertype,
                     imageColor: Theme.Socionics.Colors.red
                 )
@@ -133,72 +153,32 @@ struct SociotypeView: View {
     
     var tempButtonsContainer: some View {
         HStack {
-            Button("Back") {
+            Button(action: {
                 store.send(.backType)
-            }
-            Button("Next") {
+            }, label: {
+                Text("Back")
+                    .foregroundStyle(Theme.Socionics.Colors.red)
+                    .padding(.horizontal)
+                    .padding(.vertical, 6)
+                    .background(Theme.Socionics.Colors.red.opacity(0.05))
+                    .cornerRadius(8)
+            })
+            Button(action: {
                 store.send(.nextType)
-            }
+            }, label: {
+                Text("Next")
+                    .padding(.horizontal)
+                    .padding(.vertical, 6)
+                    .background(Theme.Socionics.Colors.lightGray)
+                    .cornerRadius(8)
+            })
         }
     }
     
     func modelAContainer(viewStore: ViewStoreAlias) -> some View {
-        VStack {
-            HStack {
-                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[0].aspect)
-                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[1].aspect)
-            }
-            HStack {
-                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[3].aspect)
-                SocionicsAspectView(aspect: viewStore.sociotype.description.modelA[2].aspect)
-            }
-        }
-    }
-    
-    struct SocionicsAspectView: View {
-        let aspect: Aspect
-        
-        var body: some View {
-            content
-        }
-        
-        private var content: some View {
-            switch aspect {
-            case .whiteLogic:
-                return Theme.Socionics.Icons.logic
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
-            case .whiteIntuition:
-                return Theme.Socionics.Icons.intuition
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
-            case .whiteEthics:
-                return Theme.Socionics.Icons.ethics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
-            case .whiteSensorics:
-                return Theme.Socionics.Icons.sensorics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.lightGray)
-            case .blackLogic:
-                return Theme.Socionics.Icons.logic
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-            case .blackIntuition:
-                return Theme.Socionics.Icons.intuition
-                    .resizable()
-                
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-            case .blackEthics:
-                return Theme.Socionics.Icons.ethics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-            case .blackSensorics:
-                return Theme.Socionics.Icons.sensorics
-                    .resizable()
-                    .foregroundStyle(Theme.Socionics.Colors.mainText)
-            }
-        }
+        Text(viewStore.sociotype.socioNickname)
+            .font(Theme.Socionics.Fonts.Inter.bold(size: 36))
+            .foregroundStyle(Theme.Socionics.Colors.mainText)
     }
 }
 
